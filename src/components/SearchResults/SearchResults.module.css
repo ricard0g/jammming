@@ -5,3 +5,9 @@
     box-shadow: 3px 3px 5px #232946;
 }
 
+.resultsTitle {
+    text-align: left;
+    color: #fffffe;
+    letter-spacing: 2px;
+    font-weight: 500;
+}

@@ -2,7 +2,7 @@ const clientId = 'c07458a609434421b54082ddfdf84b47' // client ID from the app cr
 const redirectUri = 'http://localhost:3000/' // This redirect is pre-production
 let accessToken;
 
-const Spotify = {
+export const Spotify = {
     getAccessToken() {
         if(accessToken){
             return accessToken; // If access token is already available, return it.

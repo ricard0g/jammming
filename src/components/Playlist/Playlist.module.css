@@ -18,6 +18,10 @@
     margin-bottom: 2%;
 }
 
+.playlistName:focus {
+    outline: none;
+}
+
 .savePlaylistButton {
     width: fit-content;
     padding: 3% 5.5%;
