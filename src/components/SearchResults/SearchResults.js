@@ -2,10 +2,10 @@ import styles from './SearchResults.module.css';
 
 function SearchResults(props) {
     return (
-        <section className={styles.searchResultsContainer}>
+        <div className={styles.searchResultsContainer}>
             <h2>Results</h2>
-        </section>
+        </div>
     )
 }
 
-export {SearchResults};
+export {SearchResults}

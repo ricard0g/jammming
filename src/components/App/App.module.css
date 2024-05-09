@@ -52,5 +52,15 @@
 /* Main */
 
 .main {
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.tablesContainer {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1.5fr 1fr;
+  column-gap: 2%;
+  margin: 5% 6%;
+  max-width: 100%;
+  height: auto;
 }
