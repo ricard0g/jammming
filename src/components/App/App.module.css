@@ -49,6 +49,26 @@
   border: 1px solid #eebbc3;
 }
 
+.logOutButton {
+  position: absolute;
+  right: 2%;
+  padding: 0.8% 3%;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  background-color: #232946;
+  color: #eebbc3;
+  border: 1px solid #eebbc3;
+  transition: all 200ms ease;
+}
+
+.logOutButton:hover {
+  background-color: #eebbc3;
+  color: #232946;
+  border: 1px solid #232946;
+}
+
 /* Main */
 
 .main {

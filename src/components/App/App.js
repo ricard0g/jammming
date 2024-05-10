@@ -2,7 +2,7 @@ import styles from "./App.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { SearchResults } from "../SearchResults/SearchResults";
 import { Playlist } from "../Playlist/Playlist";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Spotify } from "../../util/Spotify";
 
 function App() {
@@ -11,9 +11,24 @@ function App() {
 	const [playlistTracks, setPlaylistTracks] = useState([])
 	const [playlistName, setPlaylistName] = useState('New Playlist');
 
+	useEffect(() => {
+		const accessToken = Spotify.checkAccessToken();
+		console.log( accessToken);
+		if (accessToken){
+			setLogin(true);
+		} else {
+			setLogin(false);
+		}
+		console.log(login);
+	})
+
 	const handleClick = useCallback(() => {
-		Spotify.getAccessToken();
-	}, [login])
+		if(!login){
+			Spotify.getAccessToken();
+		} else {
+			console.log(`You're Already Logged In`);
+		}
+	}, [])
 
 	return (
 		<div className={styles.App}>
@@ -21,7 +36,7 @@ function App() {
 				<h1 className={styles.title}>
 					Ja<span className={styles.highlight}>mmm</span>ing
 				</h1>
-				<button onClick={handleClick} className={styles.loginButton}>Login</button>
+				<button onClick={handleClick} className={login ? styles.logOutButton : styles.loginButton}>{login ? 'Logged In' : 'Login'}</button>
 			</header>
 			<main className={styles.main}>
 				<SearchBar />
