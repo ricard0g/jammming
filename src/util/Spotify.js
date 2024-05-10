@@ -43,5 +43,12 @@ export const Spotify = {
             console.log(accessToken);
             return accessToken;
         }
+    },
+    async search(term) {
+        try {
+            
+        } catch(error) {
+            console.log(error);
+        }
     }
 }
