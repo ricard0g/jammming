@@ -30,6 +30,10 @@ function App() {
 		}
 	}, []);
 
+	const search = useCallback((term) => {
+		Spotify.search(term).then(setSearchResults);
+	}, []);
+
 
 
 	return (
@@ -46,7 +50,7 @@ function App() {
 				</button>
 			</header>
 			<main className={styles.main}>
-				<SearchBar login={login} />
+				<SearchBar login={login} onSearch={search} />
 				<section className={styles.tablesContainer}>
 					<SearchResults />
 					<Playlist />
