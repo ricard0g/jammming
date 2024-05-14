@@ -20,7 +20,7 @@ function App() {
 			setLogin(false);
 		}
 		console.log(login);
-	});
+	}, []);
 
 	const handleClick = useCallback(() => {
 		if (!login) {
@@ -34,7 +34,33 @@ function App() {
 		Spotify.search(term).then(setSearchResults);
 	}, []);
 
+	const addTrack = useCallback(
+		(track) => {
+			if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
+				return;
 
+			setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
+		},
+		[playlistTracks]
+	);
+
+	const removeTrack = useCallback((track) => {
+		setPlaylistTracks((savedTracks) => {
+			savedTracks.filter((savedTrack) => savedTrack.id !== track.id);
+		});
+	}, []);
+
+	const updatePlaylistName = useCallback((name) => {
+		setPlaylistName(name);
+	}, []);
+
+	const savePlaylist = useCallback(() => {
+		const trackUris = playlistTracks.map((track) => track.uri);
+		Spotify.savePlaylist(playlistName, trackUris).then(() => {
+			setPlaylistName("New Playlist");
+			setPlaylistTracks([]);
+		});
+	}, [playlistName, playlistTracks]);
 
 	return (
 		<div className={styles.App}>
@@ -52,8 +78,14 @@ function App() {
 			<main className={styles.main}>
 				<SearchBar login={login} onSearch={search} />
 				<section className={styles.tablesContainer}>
-					<SearchResults />
-					<Playlist />
+					<SearchResults searchResults={searchResults} onAdd={addTrack} />
+					<Playlist
+						playlistTracks={playlistTracks}
+						playlistName={playlistName}
+						onRemove={removeTrack}
+						onNameChange={updatePlaylistName}
+						onSave={savePlaylist}
+					/>
 				</section>
 			</main>
 		</div>

@@ -27,7 +27,7 @@ export const Spotify = {
 			return accessToken;
 		}
 
-		const accessTokenMatch = window.location.href.match(/access_token=([^#]*)/);
+		const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
 		const expiresInMatch = window.location.href.match(/expires_in=([^#]*)/);
 
 		if (accessTokenMatch && expiresInMatch) {
@@ -45,11 +45,13 @@ export const Spotify = {
 	async search(term) {
 		try {
 			const response = await fetch(
-				`https://api.spotify.com/v1/search?q=${term}&type=track`, {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    }
-                });
+				`https://api.spotify.com/v1/search?q=${term}&type=track`,
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			);
 
 			if (response) {
 				const jsonResponse = await response.json();
@@ -65,6 +67,53 @@ export const Spotify = {
 					album: track.album.name,
 					uri: track.uri,
 				}));
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	async savePlaylist(name, trackUris) {
+		try {
+			if (!name || !trackUris.length) {
+				return;
+			}
+
+			const headers = {
+				Authorization: `Bearer ${accessToken}`,
+			};
+
+			const getUserProfile = await fetch(`https://api.spotify.com/v1/me`, {
+				headers: headers,
+			});
+
+			if (getUserProfile) {
+				const jsonUserProfile = await getUserProfile.json();
+				const userId = jsonUserProfile.id;
+
+				const createPlaylist = await fetch(
+					`https://api.spotify.com/v1/users/${userId}/playlists`,
+					{
+						method: "POST",
+						headers: headers,
+						body: JSON.stringify({ name: name }),
+					}
+				);
+
+				if (createPlaylist) {
+					const jsonCreatePlaylistCall = await createPlaylist.json();
+					const playlistId = jsonCreatePlaylistCall.id;
+
+					const addTracksToPlaylist = await fetch(
+						`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+						{
+							method: "POST",
+							headers: headers,
+							body: JSON.stringify({ uris: trackUris }),
+						}
+					);
+
+					return addTracksToPlaylist;
+				};
 			}
 		} catch (error) {
 			console.log(error);
