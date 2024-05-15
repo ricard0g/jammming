@@ -3,14 +3,14 @@ import styles from "./Track.module.css";
 
 function Track(props) {
 	const removeTrack = useCallback(
-		(e) => {
+		(event) => {
 			props.onRemove(props.track);
 		},
 		[props.onRemove, props.track]
 	);
 
 	const addTrack = useCallback(
-		(e) => {
+		(event) => {
 			props.onAdd(props.track);
 		},
 		[props.onAdd, props.track]
@@ -34,8 +34,8 @@ function Track(props) {
 	return (
 		<div className={styles.trackContainer}>
 			<div className={styles.trackContent}>
-                <h3>{props.track.name}</h3>
-                <p>{props.track.artist} | {props.track.album}</p>
+                <h3 className={styles.titleTrack}>{props.track.name}</h3>
+                <p className={styles.trackInfo}>{props.track.artist} | {props.track.album}</p>
             </div>
             {renderAction()}
 		</div>

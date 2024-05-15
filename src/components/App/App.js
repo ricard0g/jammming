@@ -20,7 +20,7 @@ function App() {
 			setLogin(false);
 		}
 		console.log(login);
-	}, []);
+	}, [login]);
 
 	const handleClick = useCallback(() => {
 		if (!login) {
@@ -45,8 +45,8 @@ function App() {
 	);
 
 	const removeTrack = useCallback((track) => {
-		setPlaylistTracks((savedTracks) => {
-			savedTracks.filter((savedTrack) => savedTrack.id !== track.id);
+		setPlaylistTracks((prevTracks) => {
+			prevTracks.filter((currentTrack) => currentTrack.id !== track.id);
 		});
 	}, []);
 
@@ -80,8 +80,8 @@ function App() {
 				<section className={styles.tablesContainer}>
 					<SearchResults searchResults={searchResults} onAdd={addTrack} />
 					<Playlist
-						playlistTracks={playlistTracks}
 						playlistName={playlistName}
+						playlistTracks={playlistTracks}
 						onRemove={removeTrack}
 						onNameChange={updatePlaylistName}
 						onSave={savePlaylist}

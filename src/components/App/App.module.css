@@ -73,6 +73,7 @@
 
 .main {
   min-height: 100vh;
+  padding-bottom: 2%;
 }
 
 .tablesContainer {

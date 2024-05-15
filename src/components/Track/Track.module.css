@@ -1,0 +1,33 @@
+.trackContainer {
+    position: relative;
+    margin-bottom: 2%;
+    border-bottom: 1px solid white;
+}
+
+
+.titleTrack {
+    text-align: left;
+    margin: 4% 0 2% 0;
+}
+
+.trackInfo {
+    text-align: left;
+    margin-bottom: 2%;
+}
+
+.addButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 15px;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    transition: all 250ms linear;
+}
+
+.addButton:hover {
+    color: rgba(0, 0, 0, 0.713);
+}
