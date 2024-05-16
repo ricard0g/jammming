@@ -9,7 +9,7 @@ function App() {
 	const [searchResults, setSearchResults] = useState([]);
 	const [login, setLogin] = useState(false);
 	const [playlistTracks, setPlaylistTracks] = useState([]);
-	const [playlistName, setPlaylistName] = useState("New Playlist");
+	const [playlistName, setPlaylistName] = useState("");
 
 	useEffect(() => {
 		const accessToken = Spotify.checkAccessToken();
@@ -57,7 +57,7 @@ function App() {
 	const savePlaylist = useCallback(() => {
 		const trackUris = playlistTracks.map((track) => track.uri);
 		Spotify.savePlaylist(playlistName, trackUris).then(() => {
-			setPlaylistName("New Playlist");
+			setPlaylistName("");
 			setPlaylistTracks([]);
 		});
 	}, [playlistName, playlistTracks]);

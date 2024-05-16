@@ -21,13 +21,30 @@
     top: 0;
     margin-top: 15px;
     background-color: transparent;
-    font-weight: 400;
-    font-size: 1.125rem;
+    font-weight: 500;
+    font-size: 1.25rem;
     border: none;
     cursor: pointer;
     transition: all 250ms linear;
 }
 
 .addButton:hover {
-    color: rgba(0, 0, 0, 0.713);
+    color: #d6a0a9dc
+}
+
+.removalButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 15px;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+    transition: all 200ms linear;
+}
+
+.removalButton:hover {
+    color: #d6a0a9dc
 }

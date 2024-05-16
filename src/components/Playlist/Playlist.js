@@ -16,6 +16,7 @@ function Playlist(props) {
 				type="text"
 				className={styles.playlistName}
 				placeholder="New Playlist"
+				value={props.playlistName ? props.playlistName : ''}
 				onChange={handleNameChange}
 			/>
             <Tracklist 
