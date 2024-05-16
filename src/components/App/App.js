@@ -28,7 +28,7 @@ function App() {
 		} else {
 			console.log(`You're Already Logged In`);
 		}
-	}, []);
+	}, [login]);
 
 	const search = useCallback((term) => {
 		Spotify.search(term).then(setSearchResults);
@@ -36,7 +36,7 @@ function App() {
 
 	const addTrack = useCallback(
 		(track) => {
-			if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
+			if(playlistTracks.some((savedTrack) => savedTrack.id === track.id))
 				return;
 
 			setPlaylistTracks((prevPlaylistTracks) => [...prevPlaylistTracks, track]);
@@ -46,7 +46,7 @@ function App() {
 
 	const removeTrack = useCallback((track) => {
 		setPlaylistTracks((prevTracks) => {
-			prevTracks.filter((currentTrack) => currentTrack.id !== track.id);
+			return prevTracks.filter((currentTrack) => currentTrack.id !== track.id);
 		});
 	}, []);
 

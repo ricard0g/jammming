@@ -3,7 +3,7 @@ import { Track } from "../Track/Track";
 
 function Tracklist(props) {
 	return (
-		<section className={styles.trackListContainer}>
+		<div className={styles.trackListContainer}>
 			{props.tracks.map((track) => {
 				return (
 					<Track
@@ -15,7 +15,7 @@ function Tracklist(props) {
 					/>
 				);
 			})}
-		</section>
+		</div>
 	);
 }
 
