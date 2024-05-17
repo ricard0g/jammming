@@ -48,3 +48,13 @@
 .removalButton:hover {
     color: #d6a0a9dc
 }
+
+.audioSample {
+    display: inline-block;
+    position: relative;
+    right: 47%;
+    border-radius: 50px;
+    width: 50px;
+    background-color: #a2aff5;
+    margin: 1% 0;
+}

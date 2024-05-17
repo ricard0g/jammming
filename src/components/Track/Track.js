@@ -36,6 +36,7 @@ function Track(props) {
 			<div className={styles.trackContent}>
                 <h3 className={styles.titleTrack}>{props.track.name}</h3>
                 <p className={styles.trackInfo}>{props.track.artist} | {props.track.album}</p>
+                <audio controls src={props.track.preview} className={styles.audioSample}></audio><img src='' alt="Spotify Icon" />
             </div>
             {renderAction()}
 		</div>
